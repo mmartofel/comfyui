@@ -1,0 +1,900 @@
+{
+  "last_node_id": 33,
+  "last_link_id": 41,
+  "nodes": [
+    {
+      "id": 13,
+      "type": "SaveImage",
+      "pos": [
+        1674,
+        542
+      ],
+      "size": {
+        "0": 210,
+        "1": 266
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 13
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": 12,
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "slot_index": 1
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI_%date:yyyy-MM-dd-hhmmss%"
+      ]
+    },
+    {
+      "id": 14,
+      "type": "PrimitiveNode",
+      "pos": [
+        1404,
+        732
+      ],
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            12
+          ],
+          "widget": {
+            "name": "filename_prefix"
+          }
+        }
+      ],
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        "ComfyUI_%date:yyyy-MM-dd-hhmmss%"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1333,
+        171
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 7
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 41
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        518,
+        393
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 29
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 21,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        520,
+        289
+      ],
+      "size": {
+        "0": 210,
+        "1": 54
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 28
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 20,
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "evening sunset scenery blue sky nature, glass bottle with a galaxy in it"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "Note",
+      "pos": [
+        -65,
+        374
+      ],
+      "size": {
+        "0": 378.23583984375,
+        "1": 278.94244384765625
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "A simple workflow for SDXL models that don't require the refiner (like AlbedoBase XL).\n\nSome models produce better results with empty Negative Prompt.\n\nUse image sizes that have 1024^2 pixels. `aspectRatio` menu has many presets that fit this condition."
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 23,
+      "type": "Note",
+      "pos": [
+        456,
+        1096
+      ],
+      "size": {
+        "0": 435.75872802734375,
+        "1": 217.8376007080078
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "20-40 steps is usually enough. 60 sometimes produce decent results, but may cause some rough details to \"thaw\".\n\nCFG is usually fine at 7, but can  be experimented with. Usually 3-9 are fine.\n\n# Note on Turbo models\n\nOftentimes Turbo models (like Dreamshaper XL Turbo) require lower number of steps. Sometimes even lower CFG.\n\nDreamshaper XL Turbo (https://civitai.com/models/112902/dreamshaper-xl) - CFG scale 2 (3-4 for styled stuff), 4-7 sampling steps. "
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 24,
+      "type": "Note",
+      "pos": [
+        -488,
+        51
+      ],
+      "size": {
+        "0": 338,
+        "1": 171
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "Examples of various styles can be found here: https://stable-diffusion-art.com/sdxl-styles/"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 17,
+      "type": "EmptyLatentImage",
+      "pos": [
+        500,
+        639
+      ],
+      "size": {
+        "0": 300,
+        "1": 110
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 25,
+          "widget": {
+            "name": "width"
+          },
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 26,
+          "widget": {
+            "name": "height"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            17
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "type": "SDXLAspectRatio",
+      "pos": [
+        26,
+        951
+      ],
+      "size": {
+        "0": 315,
+        "1": 126
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "Width",
+          "type": "INT",
+          "links": [],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "Height",
+          "type": "INT",
+          "links": [],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SDXLAspectRatio"
+      },
+      "widgets_values": [
+        64,
+        64,
+        "1:1  - 1024x1024 square"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 25,
+      "type": "CLIPSetLastLayer",
+      "pos": [
+        928,
+        -340
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPSetLastLayer"
+      },
+      "widgets_values": [
+        -1
+      ]
+    },
+    {
+      "id": 21,
+      "type": "PrimitiveNode",
+      "pos": [
+        575,
+        962
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            19
+          ],
+          "widget": {
+            "name": "cfg"
+          }
+        }
+      ],
+      "title": "CFG",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        7,
+        "fixed"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 26,
+      "type": "PrimitiveNode",
+      "pos": [
+        94,
+        709
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            25
+          ],
+          "widget": {
+            "name": "width"
+          }
+        }
+      ],
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        512,
+        "fixed"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "PrimitiveNode",
+      "pos": [
+        101,
+        830
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            26
+          ],
+          "widget": {
+            "name": "height"
+          },
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        1024,
+        "fixed"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        949,
+        359
+      ],
+      "size": {
+        "0": 315,
+        "1": 474
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 37
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 4
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 17
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": 18,
+          "widget": {
+            "name": "steps"
+          },
+          "slot_index": 4
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": 19,
+          "widget": {
+            "name": "cfg"
+          },
+          "slot_index": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        348654753795666,
+        "randomize",
+        60,
+        7,
+        "dpmpp_2m",
+        "karras",
+        1
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PrimitiveNode",
+      "pos": [
+        574,
+        820
+      ],
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            18
+          ],
+          "widget": {
+            "name": "steps"
+          }
+        }
+      ],
+      "title": "Steps",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        60,
+        "fixed"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -134,
+        -295
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            37
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            22,
+            28,
+            29
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "redwater.safetensors"
+      ]
+    },
+    {
+      "id": 33,
+      "type": "VAELoader",
+      "pos": [
+        977,
+        -97
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            41
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "furception_vae_1-0.safetensors"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "SDXLPromptStyler",
+      "pos": [
+        -97,
+        62
+      ],
+      "size": {
+        "0": 420.4623718261719,
+        "1": 258.8468322753906
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "text_positive",
+          "type": "STRING",
+          "links": [
+            20
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "text_negative",
+          "type": "STRING",
+          "links": [
+            21
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SDXLPromptStyler"
+      },
+      "widgets_values": [
+        "solo, female, anthro, tired, fox, glowing eyes, purple one-piece swimsuit, long red hair, kneeling on towel, looking up, beach, rain, ambient silhouette, backlighting, detailed background, depth of field, masterpiece, best quality, high detail, shaded",
+        "embedding:boring_e621_fluffyrock_v4",
+        "base",
+        true
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    }
+  ],
+  "links": [
+    [
+      4,
+      6,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      7,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      3,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      12,
+      14,
+      0,
+      13,
+      1,
+      "STRING"
+    ],
+    [
+      13,
+      8,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      17,
+      17,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      18,
+      20,
+      0,
+      3,
+      4,
+      "INT"
+    ],
+    [
+      19,
+      21,
+      0,
+      3,
+      5,
+      "FLOAT"
+    ],
+    [
+      20,
+      22,
+      0,
+      6,
+      1,
+      "STRING"
+    ],
+    [
+      21,
+      22,
+      1,
+      7,
+      1,
+      "STRING"
+    ],
+    [
+      22,
+      4,
+      1,
+      25,
+      0,
+      "CLIP"
+    ],
+    [
+      25,
+      26,
+      0,
+      17,
+      0,
+      "INT"
+    ],
+    [
+      26,
+      27,
+      0,
+      17,
+      1,
+      "INT"
+    ],
+    [
+      28,
+      4,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      29,
+      4,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      37,
+      4,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      41,
+      33,
+      0,
+      8,
+      1,
+      "VAE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6209213230591553,
+      "offset": {
+        "0": 456.6500101062244,
+        "1": 505.3807022664699
+      }
+    }
+  },
+  "version": 0.4
+}

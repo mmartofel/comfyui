@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# A folder where models, outputs etc. will be stored. This folder is mounted onto the container or linked to respective folders in ComfyUI.
+OUTER_FOLDER=$HOME/comfyui
+
+# A folder that contains comfyUI itself
+COMFYUI_FOLDER=$HOME/ComfyUI
