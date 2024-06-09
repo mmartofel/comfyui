@@ -106,8 +106,8 @@ export const defaultGraph = {
         "Node name for S&R": "EmptyLatentImage"
       },
       "widgets_values": [
-        512,
-        512,
+        1024,
+        576,
         1
       ]
     },

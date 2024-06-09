@@ -33,13 +33,7 @@ spec:
           ports:
             - containerPort: 8188
               protocol: TCP
-          resources:
-            limits:
-              cpu: '6'
-              memory: 12Gi
-            requests:
-              cpu: '4'
-              memory: 8Gi
+          resources: {}
           imagePullPolicy: Always
           volumeMounts:
             - name: comfyui-volume

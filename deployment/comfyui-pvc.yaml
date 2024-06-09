@@ -3,10 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     app: comfyui
-  name: confyui-pvc
+  name: comfyui-pvc
   namespace: open-webui
 spec:
-  accessModes: ["ReadWriteOnce"]
+  accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
       storage: 50Gi
