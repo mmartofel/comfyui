@@ -74,6 +74,9 @@ COPY --chown=$USERNAME kill-started-comfyui.py .
 # RUN python3 kill-started-comfyui.py
 # RUN rm kill-started-comfyui.py
 
+# Marek - checkpoit missing
+RUN wget https://huggingface.co/frankjoshua/albedobaseXL_v13/resolve/main/albedobaseXL_v13.safetensors?download=true -O models/checkpoints/albedobaseXL_v13.safetensors
+
 # Expose external port
 EXPOSE 8188
 
@@ -82,4 +85,4 @@ EXPOSE 8188
 
 # RUN pwd
 # RUN bash -c "./start-comfyui-cpu.sh"
-CMD [ "/home/mmartofe/ComfyUI/start-comfyui-gpu.sh" ]
+CMD [ "/home/mmartofe/ComfyUI/start-comfyui-cpu.sh" ]

@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+    app.openshift.io/route-disabled: 'false'
+    deployment.kubernetes.io/revision: '1'
+    openshift.io/generated-by: OpenShiftWebConsole
+  resourceVersion: '138242'
+  name: comfyui
+  namespace: open-webui
+  labels:
+    app: comfyui
+    app.kubernetes.io/component: comfyui
+    app.kubernetes.io/instance: comfyui
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/part-of: comfyui-app
+    app.openshift.io/runtime-namespace: open-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comfyui
+  template:
+    metadata:
+      labels:
+        app: comfyui
+        deployment: comfyui
+    spec:
+      containers:
+        - name: comfyui
+          image: 'quay.io/mmartofe/comfyui:latest'
+          ports:
+            - containerPort: 8188
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
