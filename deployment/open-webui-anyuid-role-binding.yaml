@@ -1,0 +1,18 @@
+
+# as default open-webui as well as ollama containers are run as USER 0 (with root priviledges) we need that fix to provide ClusterRoleBinding as below
+# it's a serious security issue, need to be fixed if we think to go production
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: 'system:openshift:scc:anyuid'
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: "{}"
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: open-webui
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: 'system:openshift:scc:anyuid'

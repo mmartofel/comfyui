@@ -1,0 +1,23 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: comfyui
+  namespace: open-webui
+  labels:
+    app: comfyui
+    app.kubernetes.io/component: comfyui
+    app.kubernetes.io/instance: comfyui
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/part-of: comfyui-app
+    app.openshift.io/runtime-version: cpu
+spec:
+  ports:
+    - name: 8188-tcp
+      protocol: TCP
+      port: 8188
+      targetPort: 8188
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  selector:
+    app: comfyui
+    deployment: comfyui

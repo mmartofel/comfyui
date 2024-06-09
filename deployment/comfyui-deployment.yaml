@@ -29,11 +29,22 @@ spec:
     spec:
       containers:
         - name: comfyui
-          image: 'quay.io/mmartofe/comfyui:latest'
+          image: 'quay.io/mmartofe/comfyui:cpu'
           ports:
             - containerPort: 8188
               protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: '6'
+              memory: 12Gi
+            requests:
+              cpu: '4'
+              memory: 8Gi
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: comfyui-volume
+              mountPath: /home/mmartofe/ComfyUI/dupa
+      volumes:
+        - name: comfyui-volume
+          persistentVolumeClaim:
+            claimName: comfyui-pvc                     

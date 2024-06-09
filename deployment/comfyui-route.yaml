@@ -1,0 +1,24 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: comfyui
+  namespace: open-webui
+  labels:
+    app: comfyui
+    app.kubernetes.io/component: comfyui
+    app.kubernetes.io/instance: comfyui
+    app.kubernetes.io/name: comfyui
+    app.kubernetes.io/part-of: comfyui-app
+    app.openshift.io/runtime-version: cpu
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  to:
+    kind: Service
+    name: comfyui
+  port:
+    targetPort: 8188-tcp
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
