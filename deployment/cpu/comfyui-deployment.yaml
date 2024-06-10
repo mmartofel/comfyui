@@ -5,8 +5,7 @@ metadata:
     alpha.image.policy.openshift.io/resolve-names: '*'
     app.openshift.io/route-disabled: 'false'
     deployment.kubernetes.io/revision: '1'
-    openshift.io/generated-by: OpenShiftWebConsole
-  resourceVersion: '138242'
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"open-webui"}]'
   name: comfyui
   namespace: open-webui
   labels:
@@ -34,7 +33,7 @@ spec:
             - containerPort: 8188
               protocol: TCP
           resources: {}
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: comfyui-volume
               mountPath: /home/mmartofe/ComfyUI/dupa
